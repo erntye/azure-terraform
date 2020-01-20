@@ -1,0 +1,9 @@
+
+# log into account
+read -sp "Azure password: " AZ_PASS && echo && az login -u ernest@govtechctmo.onmicrosoft.com -p $AZ_PASS
+export SUBSCRIPTION_ID=$(az account list --query "[].id | [0]" | tr -d '"')
+az account set --subscription="${SUBSCRIPTION_ID}"
+
+
+# log into service principal
+az login --service-principal -u 909eda55-560e-4383-8f68-dba83567b2c1 -p C/5n.x8rvWsidJ14?WQphd.8:L7_nQQz --tenant d2e87a20-448f-4835-8a5f-daba2d151414
