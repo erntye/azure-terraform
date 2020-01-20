@@ -1,3 +1,6 @@
+provider "azurerm" {
+}
+
 resource "azurerm_app_service_plan" "asp" {
   name                = var.app_service_plan_name
   location            = var.rg_location
