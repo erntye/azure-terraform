@@ -1,0 +1,6 @@
+name = "AStest1"
+app_service_plan_name = "ASPtest1"
+rg_location = "Southeast Asia"
+rg_name = "testAppSvcRG"
+tier = "F1"
+size = "Free"
