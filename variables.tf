@@ -30,3 +30,4 @@ variable "SQL_SERVER_USER" {
 }
 variable "SQL_SERVER_PW" {
   description = "SQL Server password"
+}
