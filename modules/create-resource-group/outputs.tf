@@ -1,2 +1,3 @@
-output "possible_outbound_ip_addresses" {
+output "name" {
   value = var.name
+}
