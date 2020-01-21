@@ -1,5 +1,0 @@
-name = "test1"
-rg_location = "Southeast Asia"
-// rg_name = "testAppSvcRG"
-tier = "Standard"
-size = "S1"

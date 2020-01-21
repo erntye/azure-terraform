@@ -1,4 +1,4 @@
-name = "test1"
+name = "test2"
 rg_location = "Southeast Asia"
 // rg_name = "testAppSvcRG"
 tier = "Standard"
