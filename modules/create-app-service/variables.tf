@@ -7,9 +7,9 @@ variable "name" {
 variable "rg_location" {
   description = "Resource Group location."
 }
-// variable "rg_name" {
-//   description = "Resource Group name."
-// }
+variable "rg_name" {
+  description = "Resource Group name."
+}
 variable "tier" {
   description = "App Service Plan tier."
 }

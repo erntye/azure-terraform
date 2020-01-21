@@ -8,7 +8,8 @@ module "resource-group" {
 
 module "app-service"  {
   source  = "./modules/create-app-service"
-  name                = module.resource-group.name
+  name                = var.name
+  rg_name = module.resource-group.RGname
   rg_location            = var.rg_location
   tier = var.tier
   size = var.size
