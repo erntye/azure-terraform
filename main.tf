@@ -23,4 +23,6 @@ module "sql" {
   name        = var.name
   rg_name     = module.RG.rg_name
   rg_location = module.RG.rg_location
+  administrator_login          = var.SQL_SERVER_USER
+  administrator_login_password = var.SQL_SERVER_PW
 }

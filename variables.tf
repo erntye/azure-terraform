@@ -24,3 +24,9 @@ variable "https_only" {
   description = "Whether the App Service only allows HTTPS connections."
   default     = false
 }
+
+variable "SQL_SERVER_USER" {
+  description = "SQL Server username"
+}
+variable "SQL_SERVER_PW" {
+  description = "SQL Server password"
