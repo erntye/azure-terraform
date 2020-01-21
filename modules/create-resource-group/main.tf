@@ -1,6 +1,4 @@
-provider "azurerm" {
-}
 resource "azurerm_resource_group" "rg" {
-        name = "testResourceGroup"
+        name = "${var.name}RG"
         location = "Southeast Asia"
 }
