@@ -23,7 +23,7 @@ resource "azurerm_app_service" "as" {
 
   connection_string {
     name  = "Database"
-    type  = "SQLServer"
-    value = "Server=tcp:${var.fully_qualified_domain_name} Database=${var.db_name};User ID=${var.SQL_SERVER_USER};Password=${var.SQL_SERVER_PW};Trusted_Connection=False;Encrypt=True;"
+    type  = "SQLAzure"
+    value = "Server=tcp:${var.fully_qualified_domain_name} Initial Catalog=${var.db_name};User ID=${var.SQL_SERVER_USER};Password=${var.SQL_SERVER_PW};Trusted_Connection=False;Encrypt=True;"
   }
 }
