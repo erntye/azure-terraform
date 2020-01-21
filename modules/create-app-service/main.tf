@@ -1,7 +1,7 @@
 resource "azurerm_app_service_plan" "asp" {
   name                = "${var.name}ASP"
   location            = var.rg_location
-  resource_group_name = "${var.rg_name}"
+  resource_group_name = var.rg_name
 
   sku {
     tier = var.tier
