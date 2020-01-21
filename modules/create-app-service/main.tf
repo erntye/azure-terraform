@@ -16,7 +16,14 @@ resource "azurerm_app_service" "as" {
   app_service_plan_id = azurerm_app_service_plan.asp.id
   app_settings        = var.app_settings
   https_only          = var.https_only
+  
   site_config {
     always_on = var.always_on
+  }
+
+  connection_string {
+    name  = "Database"
+    type  = "SQLServer"
+    value = "Server=tcp:${var.fully_qualified_domain_name} Database=${var.db_name};User ID=${var.SQL_SERVER_USER};Password=${var.SQL_SERVER_PW};Trusted_Connection=False;Encrypt=True;"
   }
 }
