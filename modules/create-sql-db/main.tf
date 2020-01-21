@@ -9,8 +9,8 @@ resource "azurerm_sql_server" "sqlserver" {
 
 resource "azurerm_sql_database" "sqldb" {
   name                = "${var.name}sqldatabase"
-  resource_group_name = ${var.rg_name}
-  location            = ${var.rg_location}
-  server_name         = "${azurerm_sql_server.sqlserver.name}"
+  resource_group_name = var.rg_name
+  location            = var.rg_location
+  server_name         = azurerm_sql_server.sqlserver.name
 
 }
