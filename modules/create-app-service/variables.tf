@@ -1,9 +1,7 @@
 variable "name" {
   description = "Name of app service."
 }
-// variable "app_service_plan_name" {
-//   description = "Name of app service plan."
-// }
+
 variable "rg_location" {
   description = "Resource Group location."
 }
