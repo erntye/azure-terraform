@@ -1,3 +1,3 @@
 variable "name" {
-  description = "Name of app service."
+  description = "Name of resource group."
 }
