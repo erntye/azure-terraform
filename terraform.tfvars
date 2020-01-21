@@ -1,5 +1,4 @@
 name = "test2"
 rg_location = "Southeast Asia"
-// rg_name = "testAppSvcRG"
-tier = "Free"
-size = "F1"
+tier = "Standard"
+size = "S1"
