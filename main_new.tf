@@ -5,8 +5,8 @@ resource "azurerm_resource_group" "rg" {
 
 resource "azurerm_app_service_plan" "asp" {
   name                = "${var.name}ASP"
-  location            = var.rg_location
-  resource_group_name = "${var.name}RG"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
 
   sku {
     tier = var.tier
@@ -16,8 +16,8 @@ resource "azurerm_app_service_plan" "asp" {
 
 resource "azurerm_app_service" "as" {
   name                = "${var.name}AS"
-  location            = var.rg_location
-  resource_group_name = "${var.name}RG"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
   app_service_plan_id = azurerm_app_service_plan.asp.id
   app_settings        = var.app_settings
   https_only          = var.https_only
