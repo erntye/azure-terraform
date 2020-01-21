@@ -1,7 +1,7 @@
 provider "azurerm" {
 }
 
-module "resource-group {
+module "resource-group" {
   source = "modules/create-resource-group"
 }
 
