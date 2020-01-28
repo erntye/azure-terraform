@@ -19,11 +19,18 @@ resource "azurerm_app_service" "as" {
   
   site_config {
     always_on = var.always_on
+    scm_type = "ExternalGit" 
+    # place holder git
   }
 
   connection_string {
-    name  = "Database"
+    name  = "MyDbConnection"
     type  = "SQLAzure"
     value = "Server=tcp:${var.fully_qualified_domain_name} Initial Catalog=${var.db_name};User ID=${var.SQL_SERVER_USER};Password=${var.SQL_SERVER_PW};Trusted_Connection=False;Encrypt=True;"
+  }
+
+  source_control { # placeholder git for now
+    repo_url = "https://github.com/erntye/dotnet-sqldb-tutorial.git"
+    branch = "master"
   }
 }
