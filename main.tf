@@ -40,8 +40,8 @@ module "app-gateway" {
   tier                  = var.tier
   sku_name              = var.sku_name
   backend_address_pools = [{
-    name= "${var.name}-beap" 
-    ip_addresses= module.app-service.possible_outbound_ip_addresses
+    "name"= "${var.name}-beap" 
+    "ip_addresses"= module.app-service.possible_outbound_ip_addresses
   }]
   backend_http_settings = var.backend_http_settings
   http_listeners        = var.http_listeners
