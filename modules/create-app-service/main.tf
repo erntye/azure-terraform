@@ -16,16 +16,9 @@ resource "azurerm_app_service" "as" {
   app_service_plan_id = azurerm_app_service_plan.asp.id
   app_settings        = var.app_settings
   https_only          = var.https_only
-
-  source_control { # placeholder git for now
-    repo_url = "https://github.com/erntye/dotnet-sqldb-tutorial.git"
-    branch = "master"
-  }
   
   site_config {
     always_on = var.always_on
-    scm_type = "ExternalGit" 
-    # place holder git
   }
 
   connection_string {
