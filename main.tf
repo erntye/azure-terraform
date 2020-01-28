@@ -33,7 +33,7 @@ module "app-service"  {
 }
 
 module "app-gateway" {
-  source                = "./modules/create-resource-group"
+  source                = "./modules/create-app-gateway"
   name                  = var.name
   rg_name               = module.RG.rg_name
   rg_location           = module.RG.rg_location
