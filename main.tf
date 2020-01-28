@@ -43,7 +43,7 @@ module "app-gateway" {
     {
       name= "${var.name}-beap" 
       ip_addresses= module.app-service.possible_outbound_ip_addresses
-    }
+    },
   ]
   backend_http_settings = var.backend_http_settings
   http_listeners        = var.http_listeners
