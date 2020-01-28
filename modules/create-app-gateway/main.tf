@@ -71,7 +71,7 @@ resource "azurerm_application_gateway" "network" {
     content {
       name                                = backend_http_settings.value.name
       cookie_based_affinity               = backend_http_settings.value.has_cookie_based_affinity ? "Enabled" : "Disabled"
-      path                                = backend_http_settings.value.path
+      // path                                = backend_http_settings.value.path
       port                                = backend_http_settings.value.port
       protocol                            = backend_http_settings.value.is_https ? "Https" : "Http"
       request_timeout                     = backend_http_settings.value.request_timeout
