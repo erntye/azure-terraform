@@ -39,13 +39,13 @@ variable "is_public_ip_allocation_static" {
   description = "Is the public IP address of the App Gateway static?"
   default     = false
 }
-// variable "backend_address_pools" {
-//   description = "List of backend address pools."
-//   type = list(object({
-//     name         = string
-//     ip_addresses = list(string)
-//   }))
-// }
+variable "backend_address_pools" {
+  description = "List of backend address pools."
+  type = list(object({
+    name         = string
+    ip_addresses = list(string)
+  }))
+}
 variable "backend_http_settings" {
   description = "List of backend HTTP settings."
   type = list(object({

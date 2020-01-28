@@ -3,7 +3,10 @@ rg_location = "Southeast Asia"
 tier = "Standard"
 size = "S1"
 sku_name ="Standard_Small"
-// backend_address_pools = [{}]
+backend_address_pools = [{
+      name = "teststring" 
+      ip_addresses = ["ab","C"]
+    }]
 backend_http_settings = [ {
     name                                = "test2-http-set"
     has_cookie_based_affinity           = false

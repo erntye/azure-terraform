@@ -39,10 +39,7 @@ module "app-gateway" {
   rg_location           = module.RG.rg_location
   tier                  = var.tier
   sku_name              = var.sku_name
-  backend_address_pools =  [{
-      name = "teststring" 
-      ip_addresses = module.app-service.possible_outbound_ip_addresses
-    }]
+  backend_address_pools = var.backend_address_pools
   backend_http_settings = var.backend_http_settings
   http_listeners        = var.http_listeners
   request_routing_rules = var.request_routing_rules
