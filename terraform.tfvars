@@ -1,14 +1,11 @@
-locals {
-    name = "test1"
-}
-name = local.name
+name = test2
 rg_location = "Southeast Asia"
 tier = "Standard"
 size = "S1"
 sku_name ="Standard_Small"
 // backend_address_pools = [{}]
 backend_http_settings = [ {
-    name                                = "${local.name}-http-set"
+    name                                = "test2-http-set"
     has_cookie_based_affinity           = false
     port                                = 80
     is_https                            = false
@@ -16,12 +13,12 @@ backend_http_settings = [ {
     pick_host_name_from_backend_address = true
   }]
 http_listeners = [{
-    name = "${local.name}-http-lstn"
+    name = "test2-http-lstn"
     is_https = true
 }]
 request_routing_rules = [{
-    name                       = "${local.name}-routing-rule"
-    http_listener_name         = "${local.name}-http-lstn"
-    backend_address_pool_name  = "${local.name}-beap"
-    backend_http_settings_name = "${local.name}-http-set"
+    name                       = "test2-routing-rule"
+    http_listener_name         = "test2-http-lstn"
+    backend_address_pool_name  = "test2-beap"
+    backend_http_settings_name = "test2-http-set"
 }]
