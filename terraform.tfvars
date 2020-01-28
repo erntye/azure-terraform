@@ -5,7 +5,7 @@ size = "S1"
 sku_name ="Standard_Small"
 backend_address_pools = [{
       name = "teststring" 
-      ip_addresses = ["ab","C"]
+      ip_addresses = ["0.0.0.0","0.0.0.0"]
     }]
 backend_http_settings = [ {
     name                                = "test2-http-set"
