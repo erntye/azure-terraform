@@ -1,35 +1,14 @@
-variable "name" {
-  description = "Name of app service."
-}
-
 variable "rg_location" {
   description = "Resource Group location."
 }
-
+variable "rg_name" {
+  description = "Resource Group name."
+}
+variable "name" {
+  description = "Name of App Gateway"
+}
 variable "tier" {
-  description = "App Service Plan tier."
-}
-variable "size" {
-  description = "App Service Plan size."
-}
-variable "app_settings" {
-  description = "App Service's configuration values."
-  default     = {}
-}
-variable "always_on" {
-  description = "Whether the App Service should always be on (Basic or above required)."
-  default     = false
-}
-variable "https_only" {
-  description = "Whether the App Service only allows HTTPS connections."
-  default     = false
-}
-
-variable "SQL_SERVER_USER" {
-  description = "SQL Server username"
-}
-variable "SQL_SERVER_PW" {
-  description = "SQL Server password"
+  description = "Tier of App Gateway SKU."
 }
 variable "sku_name" {
   description = "Name of App Gateway SKU."
@@ -73,3 +52,32 @@ variable "request_routing_rules" {
     backend_http_settings_name = string
   }))
 }
+
+
+
+// variable "probes" {
+//   description = "Health probes used to test backend health."
+//   default     = []
+//   type = list(object({
+//     name                                      = string
+//     path                                      = string
+//     is_https                                  = bool
+//     pick_host_name_from_backend_http_settings = bool
+//   }))
+// }
+
+// variable "url_path_maps" {
+//   description = "URL path maps associated to path-based rules."
+//   default     = []
+//   type = list(object({
+//     name                               = string
+//     default_backend_http_settings_name = string
+//     default_backend_address_pool_name  = string
+//     path_rules = list(object({
+//       name                       = string
+//       backend_address_pool_name  = string
+//       backend_http_settings_name = string
+//       paths                      = list(string)
+//     }))
+//   }))
+// }

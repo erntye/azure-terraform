@@ -30,4 +30,20 @@ module "app-service"  {
   server_name                 = module.sql.server_name
   SQL_SERVER_USER             = var.SQL_SERVER_USER
   SQL_SERVER_PW               = var.SQL_SERVER_PW
-} 
+}
+
+module "app-gateway" {
+  source                = "./modules/create-resource-group"
+  name                  = var.name
+  rg_name               = module.RG.rg_name
+  rg_location           = module.RG.rg_location
+  tier                  = var.tier
+  sku_name              = var.sku_name
+  backend_address_pools = [{
+    name= "${var.name}-beap" 
+    ip_addresses= module.app-service.possible_outbound_ip_addresses
+  }]
+  backend_http_settings = var.backend_http_settings
+  http_listeners        = var.http_listeners
+  request_routing_rules = var.request_routing_rules
+}
