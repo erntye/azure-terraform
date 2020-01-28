@@ -6,3 +6,6 @@ output "db_name" {
   value = azurerm_sql_database.sqldb.name
 }
 
+output "server_name" {
+  value = azurerm_sql_server.sqlserver.name
+}

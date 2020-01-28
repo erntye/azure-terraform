@@ -31,6 +31,9 @@ variable "fully_qualified_domain_name" {
 variable "db_name" {
   description = "Name of the SQL DB needed for the connection string"
 }
+variable "server_name" {
+  description = "Name of the SQL Server needed for the connection string"
+}
 variable "SQL_SERVER_USER" {
   description = "SQL Server username"
 }
