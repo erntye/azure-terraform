@@ -27,6 +27,7 @@ module "app-service"  {
   always_on                   = var.always_on
   fully_qualified_domain_name = module.sql.fully_qualified_domain_name
   db_name                     = module.sql.db_name
+  server_name                 = module.sql.server_name
   SQL_SERVER_USER             = var.SQL_SERVER_USER
   SQL_SERVER_PW               = var.SQL_SERVER_PW
 } 
