@@ -21,6 +21,7 @@ http_listeners = [{
 }]
 request_routing_rules = [{
     name                       = "test2-routing-rule"
+    is_path_based              = true
     http_listener_name         = "test2-http-lstn"
     backend_address_pool_name  = "test2-beap"
     backend_http_settings_name = "test2-http-set"

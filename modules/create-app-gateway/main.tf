@@ -62,7 +62,7 @@ resource "azurerm_application_gateway" "network" {
     content {
       name         = backend_address_pool.value.name
       ip_addresses = backend_address_pool.value.ip_addresses
-      fqdns        = backend_address_pool.value.fqdns
+      // fqdns        = backend_address_pool.value.fqdns
     }
   }
 
@@ -71,7 +71,7 @@ resource "azurerm_application_gateway" "network" {
     content {
       name                                = backend_http_settings.value.name
       cookie_based_affinity               = backend_http_settings.value.has_cookie_based_affinity ? "Enabled" : "Disabled"
-      // path                                = backend_http_settings.value.path
+      path                                = backend_http_settings.value.path
       port                                = backend_http_settings.value.port
       protocol                            = backend_http_settings.value.is_https ? "Https" : "Http"
       request_timeout                     = backend_http_settings.value.request_timeout
@@ -111,7 +111,7 @@ resource "azurerm_application_gateway" "network" {
       http_listener_name         = request_routing_rule.value.http_listener_name
       backend_address_pool_name  = request_routing_rule.value.backend_address_pool_name
       backend_http_settings_name = request_routing_rule.value.backend_http_settings_name
-      url_path_map_name          = request_routing_rule.value.url_path_map_name
+      // url_path_map_name          = request_routing_rule.value.url_path_map_name
     }
   }
 

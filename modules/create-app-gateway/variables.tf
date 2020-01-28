@@ -47,6 +47,7 @@ variable "request_routing_rules" {
   description = "Request routing rules to be used for listeners."
   type = list(object({
     name                       = string
+    is_path_based                  = bool
     http_listener_name         = string
     backend_address_pool_name  = string
     backend_http_settings_name = string
