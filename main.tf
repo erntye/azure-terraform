@@ -41,7 +41,7 @@ module "app-gateway" {
   sku_name              = var.sku_name
   backend_address_pools = [
     {
-      name = "${var.name}-beap" 
+      name = "teststring" 
       ip_addresses = module.app-service.possible_outbound_ip_addresses
     },
   ]
