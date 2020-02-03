@@ -17,8 +17,14 @@ resource "azurerm_app_service" "as" {
   app_settings        = var.app_settings
   https_only          = var.https_only
   
+  // source_control {
+  //   branch = "master"
+  //   repo_url = "https://github.com/erntye/dotnet-sqldb-tutorial.git"
+  // }
+
   site_config {
     always_on = var.always_on
+    // scm_type  = "ExternalGit"
   }
 
   connection_string {

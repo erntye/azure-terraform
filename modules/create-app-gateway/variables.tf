@@ -34,6 +34,7 @@ variable "backend_http_settings" {
     is_https                            = bool
     request_timeout                     = number
     pick_host_name_from_backend_address = bool
+    probe_name                          = string
   }))
 }
 variable "http_listeners" {
@@ -56,16 +57,14 @@ variable "request_routing_rules" {
 
 
 
-// variable "probes" {
-//   description = "Health probes used to test backend health."
-//   default     = []
-//   type = list(object({
-//     name                                      = string
-//     path                                      = string
-//     is_https                                  = bool
-//     pick_host_name_from_backend_http_settings = bool
-//   }))
-// }
+variable "probes" {
+  description = "Health probes used to test backend health."
+  default     = []
+  type        = list(object({
+    name     = string
+    is_https = bool
+  }))
+}
 
 // variable "url_path_maps" {
 //   description = "URL path maps associated to path-based rules."

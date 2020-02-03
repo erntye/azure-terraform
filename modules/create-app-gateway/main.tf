@@ -17,7 +17,7 @@ resource "azurerm_public_ip" "publicip" {
   resource_group_name = var.rg_name
   location            = var.rg_location
   allocation_method   = var.is_public_ip_allocation_static ? "Static" : "Dynamic"
-  sku                 = "Standard"
+  sku                 = "Basic"
 }
 
 # since these variables are re-used - a locals block makes this more maintainable
@@ -75,23 +75,23 @@ resource "azurerm_application_gateway" "network" {
       port                                = backend_http_settings.value.port
       protocol                            = backend_http_settings.value.is_https ? "Https" : "Http"
       request_timeout                     = backend_http_settings.value.request_timeout
-      // probe_name                          = backend_http_settings.value.probe_name
+      probe_name                          = backend_http_settings.value.probe_name
       pick_host_name_from_backend_address = backend_http_settings.value.pick_host_name_from_backend_address
     }
   }
 
-  // dynamic "probe" {
-  //   for_each = var.probes
-  //   content {
-  //     interval                                  = 30
-  //     name                                      = probe.value.name
-  //     path                                      = probe.value.path
-  //     protocol                                  = probe.value.is_https ? "Https" : "Http"
-  //     timeout                                   = 30
-  //     unhealthy_threshold                       = 3
-  //     pick_host_name_from_backend_http_settings = probe.value.pick_host_name_from_backend_http_settings
-  //   }
-  // }
+  dynamic "probe" {
+    for_each = var.probes
+    content {
+      interval                                  = 30
+      name                                      = probe.value.name
+      path                                      = "/"
+      protocol                                  = probe.value.is_https ? "Https" : "Http"
+      timeout                                   = 30
+      unhealthy_threshold                       = 3
+      pick_host_name_from_backend_http_settings = true
+    }
+  }
 
   dynamic "http_listener" {
     for_each = var.http_listeners

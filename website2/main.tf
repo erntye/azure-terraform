@@ -2,12 +2,12 @@ provider "azurerm" {
 }
 
 module "RG" {
-  source = "./modules/create-resource-group"
+  source = "../modules/create-resource-group"
   name   = var.name
 }
 
 module "sql" {
-  source          = "./modules/create-sql-db"
+  source          = "../modules/create-sql-db"
   name            = var.name
   rg_name         = module.RG.rg_name
   rg_location     = module.RG.rg_location
@@ -16,7 +16,7 @@ module "sql" {
 }
 
 module "app-service"  {
-  source                      = "./modules/create-app-service"
+  source                      = "../modules/create-app-service"
   name                        = var.name
   rg_name                     = module.RG.rg_name
   rg_location                 = module.RG.rg_location
@@ -33,7 +33,7 @@ module "app-service"  {
 }
 
 module "app-gateway" {
-  source                = "./modules/create-app-gateway"
+  source                = "../modules/create-app-gateway"
   name                  = var.name
   rg_name               = module.RG.rg_name
   rg_location           = module.RG.rg_location
