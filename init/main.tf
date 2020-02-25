@@ -1,13 +1,15 @@
 provider "azurerm" {
+  // version = "~> 1.44"
+  features {}
 }
 
 module "RG" {
-  source = "./modules/create-resource-group"
+  source = "../modules/create-resource-group"
   name   = var.name
 }
 
 module "sql" {
-  source          = "./modules/create-sql-db"
+  source          = "../modules/create-sql-db"
   name            = var.name
   rg_name         = module.RG.rg_name
   rg_location     = module.RG.rg_location
@@ -16,7 +18,7 @@ module "sql" {
 }
 
 module "app-service"  {
-  source                      = "./modules/create-app-service"
+  source                      = "../modules/create-app-service"
   name                        = var.name
   rg_name                     = module.RG.rg_name
   rg_location                 = module.RG.rg_location
@@ -33,7 +35,7 @@ module "app-service"  {
 }
 
 module "app-gateway" {
-  source                = "./modules/create-app-gateway"
+  source                = "../modules/create-app-gateway"
   name                  = var.name
   rg_name               = module.RG.rg_name
   rg_location           = module.RG.rg_location
@@ -41,12 +43,32 @@ module "app-gateway" {
   sku_name              = var.sku_name
   #backend_address_pools = var.backend_address_pools
   backend_address_pools = [{
-      name = var.backend_address_pool_name 
-      ip_addresses = split(",",module.app-service.possible_outbound_ip_addresses)
+      name = "${var.name}-beap"
+       fqdns = split(",",module.app-service.default_site_hostname) 
     }]
-  backend_http_settings = var.backend_http_settings
-  http_listeners        = var.http_listeners
-  request_routing_rules = var.request_routing_rules
+  backend_http_settings = [{
+    name                                = "${var.name}-http-set"
+    has_cookie_based_affinity           = false
+    port                                = 80
+    is_https                            = false
+    request_timeout                     = 30
+    pick_host_name_from_backend_address = true
+    probe_name                          = "${var.name}-probe"
+  }]
+  http_listeners        = [{
+    name = "${var.name}-http-lstn"
+    is_https = false
+}]
+  request_routing_rules = [{
+    name                       = "${var.name}-routing-rule"
+    is_path_based              = false
+    http_listener_name         = "${var.name}-http-lstn"
+    backend_address_pool_name  = "${var.name}-beap"
+    backend_http_settings_name = "${var.name}-http-set"
+}]
   is_public_ip_allocation_static = var.is_public_ip_allocation_static
-  probes = var.probes
+  probes = [{
+    name = "${var.name}-probe"
+    is_https = false
+}]
 }

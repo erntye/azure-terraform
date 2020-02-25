@@ -17,7 +17,8 @@ resource "azurerm_public_ip" "publicip" {
   resource_group_name = var.rg_name
   location            = var.rg_location
   allocation_method   = var.is_public_ip_allocation_static ? "Static" : "Dynamic"
-  sku                 = "Basic"
+  sku                 = "Basic" 
+  #TODO change sku if needed
 }
 
 # since these variables are re-used - a locals block makes this more maintainable
@@ -35,6 +36,7 @@ resource "azurerm_application_gateway" "network" {
     name     = var.sku_name
     tier     = var.tier
     capacity = 2
+    #TODO change capacity to a variable or set autoscaling
   }
 
   gateway_ip_configuration {
@@ -61,8 +63,8 @@ resource "azurerm_application_gateway" "network" {
     for_each = var.backend_address_pools
     content {
       name         = backend_address_pool.value.name
-      ip_addresses = backend_address_pool.value.ip_addresses
-      // fqdns        = backend_address_pool.value.fqdns
+      // ip_addresses = backend_address_pool.value.ip_addresses
+      fqdns        = backend_address_pool.value.fqdns
     }
   }
 

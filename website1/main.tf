@@ -42,7 +42,7 @@ module "app-gateway" {
   #backend_address_pools = var.backend_address_pools
   backend_address_pools = [{
       name = var.backend_address_pool_name 
-      ip_addresses = split(",",module.app-service.possible_outbound_ip_addresses)
+       fqdns = split(",",module.app-service.default_site_hostname) 
     }]
   backend_http_settings = var.backend_http_settings
   http_listeners        = var.http_listeners
