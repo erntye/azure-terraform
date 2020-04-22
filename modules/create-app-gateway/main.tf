@@ -1,15 +1,17 @@
 resource "azurerm_virtual_network" "vnet" {
-  name                = "${var.name}vnet"
+  // name                = "${var.name}vnet"
+  name                = "cwpproto-vnet"
   resource_group_name = var.rg_name
   location            = var.rg_location
-  address_space       = ["10.254.0.0/16"]
+  address_space       = ["10.0.8.0/16"]
 }
 
 resource "azurerm_subnet" "subnet" {
-  name                 = "${var.name}subnet"
+  // name                 = "${var.name}subnet"
+  name                 = "${var.name}subnet"  
   resource_group_name  = var.rg_name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefix       = "10.254.0.0/24"
+  address_prefix       = "10.0.8.0/24"
 }
 
 resource "azurerm_public_ip" "publicip" {
@@ -23,8 +25,8 @@ resource "azurerm_public_ip" "publicip" {
 
 # since these variables are re-used - a locals block makes this more maintainable
 locals {
-  frontend_port_name             = "${azurerm_virtual_network.vnet.name}-feport"
-  frontend_ip_configuration_name = "${azurerm_virtual_network.vnet.name}-feip"
+  // frontend_port_name             = "${azurerm_virtual_network.vnet.name}-feport"
+  frontend_ip_configuration_name = "${azurerm_virtual_network.vnet.name}-${var.name}-feip"
 }
 
 resource "azurerm_application_gateway" "network" {

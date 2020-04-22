@@ -1,5 +1,0 @@
-*.sh
-.terraform
-*.tfstate
-*.tfstate.*
-AZCLI.txt
